@@ -6,6 +6,8 @@
 #include <Windows.h>
 #include <ctime>
 #include <cstdlib>
+#include <algorithm>
+
 
 
 using namespace std;
@@ -18,13 +20,16 @@ struct Weapon
 	string name;
 	int damage;
 	int gold;
+	int level;
 	bool isOwned = false;
 	bool isEquipped = false;
+	bool AntiHeal = false;
 
 	void List()
 	{
 		cout << "Name: " << name << endl;
 		cout << "Gold: " << gold << endl;
+		cout << "Level: " << level << endl;
 
 		if (isOwned)
 			cout << "Owned: True" << endl;
@@ -45,7 +50,37 @@ struct Weapon
 
 };
 
-//Weapon weapon;
+struct Shop
+{
+	string name;;
+	int gold;
+	int stock;
+	bool Double = false;
+	bool OverHealh = false;
+	bool isOwned = false;
+	bool isEquipped = false;
+
+	void Display()
+	{
+		cout << "Name: " << name << endl;
+		cout << "Gold: " << gold << endl;
+		if (stock == 1)
+		cout << "Stock: " << stock << endl;
+
+		else if (stock == 2)
+		cout << "Stock: Unlimited" << endl;
+	}
+
+	void ListPotions()
+	{
+		cout << "Name: " << name << endl;
+		if (isEquipped)
+			cout << "Equippded: True" << endl;
+
+		else if (!isEquipped)
+			cout << "Equippded: False" << endl;
+	}
+};
 
 struct Player
 {
@@ -53,11 +88,13 @@ struct Player
 	int health;
 	int level;
 	int healamount;
-	Weapon weapon;
 	int flask;
 	int gold;
+	int elixir;
 	bool isAlive = true;
 
+	Weapon weapon;
+	Shop shop;
 	void Display()
 	{
 		cout << name << "'s Stats" << endl;
@@ -101,5 +138,13 @@ enum PlayerOption
 {
 	ATTACK = 1,
 	HEAL,
+	POTION,
 	RUN,
+};
+
+enum ShopMenu
+{
+	WEAPONS = 1,
+	POTIONS,
+	DEBUG,
 };
