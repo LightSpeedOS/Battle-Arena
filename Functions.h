@@ -1,5 +1,4 @@
 #pragma once
-#include "GameLogic.h"
 
 void Clear()
 {
@@ -12,8 +11,14 @@ void Pause()
 	Clear();
 }
 
+void Space()
+{
+	cout << endl;
+}
+
 void GetKey()
 {
+	Space();
 	cout << "Press Any Key To Return" << endl;
 	cin.ignore();
 	getchar();
@@ -80,12 +85,6 @@ void Invalid()
 	cout << "[!] Invalid Index" << endl;
 	Pause();
 }
-
-void Space()
-{
-	cout << endl;
-}
-
 
 void BattlePause()
 {
